@@ -1,6 +1,6 @@
 package in.milcom.example.async.grails
 
-import grails.async.Promises.*
+import static grails.async.Promises.*
 
 class AsyncController {
 
@@ -24,11 +24,15 @@ class AsyncController {
     	}
     }
 
-    def task() {
+    def promiseTask(Long loops) {
         log.info("Inside action: task")
-        task {
-            Thread.sleep(2000)
-            render "Finished running the task"        
-        }    
+        if(loops < 1000) {
+            render "Done Quickly"
+        } else{
+            task {
+                Thread.sleep(2000)
+                render "Finished running the task using promise."        
+            }    
+        }            
     }
 }

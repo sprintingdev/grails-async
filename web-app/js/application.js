@@ -24,8 +24,8 @@ function Notification(message) {
 }
 
 jQuery(document).ready(function(){
-	jQuery("#contextForm").submit(function(){
-		jQuery.post(appRoot + "/async/context", {loops: jQuery("#loops").val()}, function(data){
+	jQuery("#contextForm, #taskForm").submit(function(){
+		jQuery.post(appRoot + jQuery(this).attr("action"), jQuery(this).serialize(), function(data){
 			new Notification(data).init();
 		})	
 		return false;
