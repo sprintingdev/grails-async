@@ -1,5 +1,7 @@
 package in.milcom.example.async.grails
 
+import grails.async.Promises.*
+
 class AsyncController {
 
     def index() { 
@@ -7,7 +9,7 @@ class AsyncController {
     }
 
     def context(Long loops) {
-        log.info("Inside action: long running.")
+        log.info("Inside action: context.")
     	if(loops < 1000) {
             log.info("Done Quickly")
     		render "Done Quickly"
@@ -20,5 +22,13 @@ class AsyncController {
     			ctx.complete()
     		}
     	}
+    }
+
+    def task() {
+        log.info("Inside action: task")
+        task {
+            Thread.sleep(2000)
+            render "Finished running the task"        
+        }    
     }
 }

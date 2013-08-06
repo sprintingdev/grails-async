@@ -7,10 +7,27 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
+
+function Notification(message) {
+	this.message = message;
+	this.init = function() {
+		var html = '<div style="display:none;" class="alert fade in" id="notifications">' +
+						this.message +
+						'<button data-dismiss="alert" class="close" type="button">×</button>' +
+					'</div>';
+		jQuery("#alerts").html(html);
+		jQuery("#notifications").show();
+		$("#notifications").alert();
+		
+	}
+
+}
+
 jQuery(document).ready(function(){
-	jQuery("#clickMe").click(function(){
-		jQuery.post(appRoot + "/async/longRunning", {loops: jQuery("#loops").val()}, function(data){
-			jQuery("#ajaxResponse").html(data);	
+	jQuery("#contextForm").submit(function(){
+		jQuery.post(appRoot + "/async/context", {loops: jQuery("#loops").val()}, function(data){
+			new Notification(data).init();
 		})	
+		return false;
 	});
 });
