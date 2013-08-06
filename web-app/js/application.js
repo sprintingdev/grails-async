@@ -24,7 +24,7 @@ function Notification(message) {
 }
 
 jQuery(document).ready(function(){
-	jQuery("#contextForm, #taskForm, #onCompleteForm").submit(function(){
+	jQuery("#contextForm, #taskForm, #onCompleteForm, #promiseChainingForm").submit(function(){
 		jQuery.post(appRoot + jQuery(this).attr("action"), jQuery(this).serialize(), function(data){
 			new Notification(data).init();
 		})	

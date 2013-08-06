@@ -50,4 +50,17 @@ class AsyncController {
             }
         }        
     }
+
+    def promiseChaining(Long loops) {
+        if(loops < 1000) {
+            render "Done Quickly"
+            return
+        } else {
+            def renderTask = {render "Finished running task using Promise chaining"}
+            def promise = task {
+                Thread.sleep(loops)
+            }
+            promise.then renderTask
+        }       
+    }
 }

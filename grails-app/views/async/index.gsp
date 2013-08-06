@@ -25,5 +25,10 @@
 	<input type="text" class="form-control"  name="loops" size="180" placeholder="Duration of Ajax Request" id="loops"/>
 	<button name="clickMe" class="btn btn-default" width="180" id="clickMe">Click Me to Trigger Long Running Process</button>
 	</form>
+	<h3>Using Promise Chaining</h3>
+	<form class="form-inline" id="promiseChainingForm" action="/async/promiseChaining">
+	<input type="text" class="form-control"  name="loops" size="180" placeholder="Duration of Ajax Request" id="loops"/>
+	<button name="clickMe" class="btn btn-default" width="180" id="clickMe">Click Me to Trigger Long Running Process</button>
+	</form>
 </body>
 </html>
