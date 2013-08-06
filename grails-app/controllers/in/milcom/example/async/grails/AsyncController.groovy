@@ -28,11 +28,26 @@ class AsyncController {
         log.info("Inside action: task")
         if(loops < 1000) {
             render "Done Quickly"
-        } else{
+        } else {
             task {
                 Thread.sleep(2000)
                 render "Finished running the task using promise."        
             }    
         }            
+    }
+
+    def onCompleteTask(Long loops) {
+        if(loops < 1000) {
+            render "Done Quickly"
+            return
+        } else {
+            def t = task { 
+                Thread.sleep(2000)
+                render "Finished running task using onComplete"    
+            }
+            onComplete([t]) {
+                return
+            }
+        }        
     }
 }
